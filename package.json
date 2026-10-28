@@ -1,0 +1,14 @@
+{
+  "name": "orchestra-panic",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "node start-server.mjs",
+    "generate-demo": "node generate-demo-track.mjs",
+    "check": "node --check game.js && node --check start-server.mjs && node --check generate-demo-track.mjs"
+  },
+  "dependencies": {
+    "@mediapipe/tasks-vision": "0.10.21"
+  }
+}
