@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#16112a" />
+    <title>Orchestra Panic</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <section id="setup-screen" class="setup-screen" aria-labelledby="game-title">
+        <div class="curtain curtain-left"></div>
+        <div class="curtain curtain-right"></div>
+        <div class="setup-card">
+          <p class="eyebrow">THE 1998 CONCERT DISASTER SIMULATOR</p>
+          <h1 id="game-title">ORCHESTRA<br /><span>PANIC!</span></h1>
+          <p class="tagline">Wave your hands. Save the concert. Try not to get tomatoes.</p>
+
+          <div class="setup-grid">
+            <div class="song-choice">
+              <label class="file-picker" for="song-input">
+                <span class="label-title">1. Pick an MP3 or WAV</span>
+                <span id="song-name" class="file-name">No song selected</span>
+                <input id="song-input" type="file" accept="audio/mpeg,audio/mp3,audio/wav,.mp3,.wav" />
+                <span class="pick-button">Choose Song</span>
+              </label>
+              <button id="demo-button" class="demo-button" type="button">Use Included Demo</button>
+            </div>
+
+            <fieldset class="difficulty-picker">
+              <legend>2. Pick your panic level</legend>
+              <div class="difficulty-options">
+                <input id="easy" name="difficulty" type="radio" value="easy" />
+                <label for="easy"><strong>EASY</strong><small>Gentle waving</small></label>
+                <input id="normal" name="difficulty" type="radio" value="normal" checked />
+                <label for="normal"><strong>NORMAL</strong><small>Two-hand trouble</small></label>
+                <input id="hard" name="difficulty" type="radio" value="hard" />
+                <label for="hard"><strong>HARD</strong><small>Absolute flailing</small></label>
+              </div>
+            </fieldset>
+          </div>
+
+          <div class="rules">
+            <span>CAMERA REQUIRED</span>
+            <p>After you start, keep your head and both hands in view. Raise and lower each hand to meet its colored notes.</p>
+          </div>
+
+          <button id="start-button" class="start-button" type="button" disabled>START THE CONCERT</button>
+          <p id="setup-status" class="setup-status" role="status">Choose an MP3, WAV, or the included demo to continue.</p>
+        </div>
+      </section>
+
+      <section id="game-screen" class="game-screen" aria-label="Orchestra Panic game" hidden>
+        <canvas id="game-canvas" width="1280" height="720"></canvas>
+        <video id="camera-video" autoplay muted playsinline></video>
+        <div class="game-hud" aria-live="polite">
+          <div class="hud-left">
+            <span class="hud-label">SCORE</span>
+            <strong id="score-value">000000</strong>
+          </div>
+          <div class="hud-center">
+            <span id="judgement-value" class="judgement">GET READY!</span>
+            <span id="tracking-status" class="tracking-status">LOOK AT THE CAMERA</span>
+          </div>
+          <div class="hud-right">
+            <span class="hud-label">COMBO</span>
+            <strong id="combo-value">0</strong>
+            <span id="multiplier-value" class="multiplier">x1</span>
+          </div>
+        </div>
+        <div class="hand-label hand-label-left">LEFT HAND</div>
+        <div class="hand-label hand-label-right">RIGHT HAND</div>
+      </section>
+
+      <section id="results-screen" class="results-screen" hidden aria-labelledby="results-title">
+        <div class="results-card">
+          <p class="eyebrow">THE CURTAIN HAS FALLEN</p>
+          <h2 id="results-title">CONCERT REPORT</h2>
+          <p id="results-phrase" class="results-phrase"></p>
+          <div class="results-score" id="final-score">000000</div>
+          <div class="results-grid">
+            <div><span>HITS</span><strong id="final-hits">0</strong></div>
+            <div><span>MISSES</span><strong id="final-misses">0</strong></div>
+            <div><span>ACCURACY</span><strong id="final-accuracy">0%</strong></div>
+            <div><span>BEST COMBO</span><strong id="final-combo">0</strong></div>
+          </div>
+          <button id="play-again-button" class="start-button" type="button">PLAY AGAIN</button>
+        </div>
+      </section>
+    </main>
+
+    <audio id="song-audio" preload="metadata"></audio>
+    <script type="module" src="game.js"></script>
+  </body>
+</html>
